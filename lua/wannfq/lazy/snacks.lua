@@ -36,12 +36,10 @@ return {
             picker = { enabled = true },
             quickfile = { enabled = true },
             scope = { enabled = true },
-            animate = {
-                easing = "inOutQuad",
-            },
             scroll = {
                 enabled = true,
                 animate = {
+                    easing = "inOutQuad",
                     duration = {
                         total = 100,
                     },
