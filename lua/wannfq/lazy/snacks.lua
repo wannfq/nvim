@@ -23,7 +23,10 @@ return {
                     },
                 },
             },
-            explorer = { enabled = true },
+            explorer = {
+                enabled = true,
+                replace_netrw = true,
+            },
             indent = { enabled = true },
             input = { enabled = true },
             notifier = {
@@ -34,7 +37,14 @@ return {
             picker = { enabled = true },
             quickfile = { enabled = true },
             scope = { enabled = true },
-            scroll = { enabled = true },
+            scroll = {
+                enabled = true,
+                animate = {
+                    duration = {
+                        total = 100,
+                    },
+                },
+            },
             statuscolumn = { enabled = true },
             words = { enabled = true },
             styles = {
@@ -192,6 +202,25 @@ return {
                     },
                 })
             end,
+        },
+    },
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        },
+        keys = {
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
         },
     },
 }
