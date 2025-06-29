@@ -8,7 +8,6 @@ return {
             bigfile = { enabled = true },
             dashboard = {
                 enabled = true,
-                auto_close = true,
                 preset = {
                     keys = {
                         { icon = " ", key = "f", desc = "Find files", action = ":lua Snacks.dashboard.pick('files')" },
@@ -37,6 +36,9 @@ return {
             picker = { enabled = true },
             quickfile = { enabled = true },
             scope = { enabled = true },
+            animate = {
+                easing = "inOutQuad",
+            },
             scroll = {
                 enabled = true,
                 animate = {
