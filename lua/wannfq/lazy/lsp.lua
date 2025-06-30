@@ -29,6 +29,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "ts_ls",
+                "gopls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -70,7 +71,6 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
             }, {
                 { name = 'buffer' },
             })

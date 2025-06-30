@@ -6,8 +6,8 @@ vim.g.mapleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- up
 
- -- append line below to current line
-vim.keymap.set("n", "J", "mzJ`z")
+-- append next line to current line, without changing the cursor position
+-- vim.keymap.set("n", "J", "mzJ`z")
 
 -- keep cursor centered on jumping
 vim.keymap.set("n", "<C-d>", "<C-d>zz") -- scroll down
