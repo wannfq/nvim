@@ -9,28 +9,18 @@ end
 return {
 
     {
-        "erikbackman/brightburn.vim",
-    },
-
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-        config = function()
-            ColorMyGrounds()
-        end
-    },
-
-    {
         "shaunsingh/seoul256.nvim",
+        name = "seoul256",
+        enabled = false,
         config = function()
-            ColorMyGrounds()
+            ColorMyGrounds();
         end
     },
 
     {
         "ellisonleao/gruvbox.nvim",
         name = "gruvbox",
+        enabled = false,
         config = function()
             require("gruvbox").setup({
                 terminal_colors = true, -- add neovim terminal colors
@@ -56,8 +46,11 @@ return {
                 dim_inactive = false,
                 transparent_mode = false,
             })
+
+            ColorMyGrounds();
         end,
     },
+
     {
         "folke/tokyonight.nvim",
         config = function()
@@ -77,12 +70,15 @@ return {
                     floats = "dark", -- style for floating windows
                 },
             })
+
+            ColorMyGrounds();
         end
     },
 
     {
         "rose-pine/neovim",
         name = "rose-pine",
+        enabled = false,
         config = function()
             require('rose-pine').setup({
                 disable_background = true,
@@ -94,6 +90,7 @@ return {
             ColorMyGrounds();
         end
     },
+
     {
         "catppuccin/nvim",
         name = "catppuccin",
