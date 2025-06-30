@@ -6,7 +6,7 @@ return {
     },
     opts = {
         options = {
-            theme = "catppuccin",
+            theme = "auto",
             component_separators = { left = "│", right = "│" },
             section_separators = { left = "", right = "" },
             globalstatus = true,
@@ -16,14 +16,26 @@ return {
         },
         sections = {
             lualine_a = {
-                { "fancy_mode", width = 8 }
+                { 
+                    "fancy_mode",
+                    width = 8,
+                }
             },
             lualine_b = {
                 { "fancy_branch" },
                 { "fancy_diff" },
             },
             lualine_c = {
-                { "fancy_cwd", substitute_home = true }
+                {
+                    "fancy_cwd",
+                    substitute_home = true,
+                },
+                -- {
+                --     "buffers",
+                --     symbols = {
+                --         alternate_file = "",
+                --     },
+                -- },
             },
             lualine_x = {
                 { "fancy_macro" },
@@ -39,12 +51,4 @@ return {
             },
         }
     },
-    
-    -- config = function()
-    --     require("lualine").setup({
-    --         options = {
-    --             theme = "ayu",
-    --         },
-    --     })
-    -- end,
 }

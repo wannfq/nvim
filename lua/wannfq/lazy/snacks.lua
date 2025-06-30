@@ -33,10 +33,16 @@ return {
                 timeout = 5000,
                 style = "fancy",
             },
-            picker = { enabled = true,
+            picker = {
+                enabled = true,
                 sources = {
+                    buffers = {
+                        focus = "list",
+                    },
                     explorer = {
-                        auto_close = true,
+                        jump = {
+                            close = true,
+                        },
                     },
                 },
             },
@@ -71,7 +77,7 @@ return {
             { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
             { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
             -- find
-            { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+            { "<leader>fb", function() Snacks.picker.buffers({  }) end, desc = "Buffers" },
             { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
             { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
             { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
