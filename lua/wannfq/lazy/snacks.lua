@@ -39,9 +39,16 @@ return {
                     buffers = {
                         focus = "list",
                     },
+                    undo = {
+                        focus = "list",
+                    },
                     explorer = {
                         jump = {
                             close = true,
+                        },
+                        layout = {
+                            preset = "sidebar",
+                            preview = true,
                         },
                     },
                 },
