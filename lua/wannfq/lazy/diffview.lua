@@ -1,12 +1,10 @@
 return {
     "sindrets/diffview.nvim",
-
+    lazy = true,
     cmd = { "DiffviewOpen", "DiffviewClose" },
-
     keys = {
         { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Open Diffview" },
     },
-
     config = function()
         require("diffview").setup({
              keymaps = {

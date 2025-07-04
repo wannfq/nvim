@@ -1,10 +1,11 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-
+    lazy = true,
+    event = "VeryLazy",
     config = function()
         local configs = require("nvim-treesitter.configs")
-
+        -- https://github.com/nvim-treesitter/nvim-treesitter
         configs.setup({
             ensure_installed = {
                 "c",
@@ -22,7 +23,10 @@ return {
                 "go",
                 "terraform",
                 "yaml",
+                "json",
                 "regex",
+                "hcl",
+                "bash",
             },
             sync_install = false,
             highlight = { enable = true },

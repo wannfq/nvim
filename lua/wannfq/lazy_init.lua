@@ -32,4 +32,5 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
     spec = "wannfq.lazy",
     checker = { enabled = true },
+    defaults = { lazy = false },
 })

@@ -10,11 +10,11 @@ return {
                 enabled = true,
                 preset = {
                     keys = {
-                        { icon = " ", key = "f", desc = "Find files", action = ":lua Snacks.dashboard.pick('files')" },
-                        { icon = " ", key = "s", desc = "Search text", action = ":lua Snacks.dashboard.pick('live_grep')" },
                         { icon = " ", key = "e", desc = "File explorer", action = ":lua Snacks.picker.explorer()" },
+                        { icon = " ", key = "f", desc = "Find files", action = ":lua Snacks.dashboard.pick('files')" },
                         { icon = " ", key = "r", desc = "Recent files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                        -- { icon = "󰁯 ", key = "w", desc = "Restore session", action = ":SessionSearch" },
+                        { icon = " ", key = "s", desc = "Search text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+                        { icon = "󰁯 ", key = "w", desc = "Restore session", action = ":SessionManager load_current_dir_session" },
                         { icon = "󰊢 ", key = "g", desc = "LazyGit", action = ":lua Snacks.lazygit()" },
                         { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
                         { icon = " ", key = "m", desc = "Mason", action = ":Mason" },
@@ -26,7 +26,12 @@ return {
                 enabled = true,
                 replace_netrw = true,
             },
-            indent = { enabled = true },
+            indent = {
+                enabled = true,
+                scope = {
+                    hl = "SnacksIndent1",
+                },
+            },
             input = { enabled = true },
             notifier = {
                 enabled = true,
@@ -50,6 +55,7 @@ return {
                             preset = "sidebar",
                             preview = true,
                         },
+                        hidden = true,
                     },
                 },
             },
@@ -208,6 +214,7 @@ return {
 
     {
         "folke/which-key.nvim",
+        lazy = true,
         event = "VeryLazy",
         opts = {
             -- your configuration comes here
