@@ -1,7 +1,6 @@
 return {
     "nvim-lualine/lualine.nvim",
-    lazy = true,
-    event = "VeryLazy",
+    lazy = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "meuter/lualine-so-fancy.nvim",
@@ -18,7 +17,7 @@ return {
         },
         sections = {
             lualine_a = {
-                { 
+                {
                     "fancy_mode",
                     width = 8,
                 }

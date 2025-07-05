@@ -21,7 +21,7 @@ return {
                     end
                     peek.open()
                 end,
-                { 
+                {
                     desc = "Markdown preview toggle"
                 }
             )
