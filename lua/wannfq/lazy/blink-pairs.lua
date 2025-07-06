@@ -2,11 +2,12 @@ return {
     'saghen/blink.pairs',
     version = '*', -- (recommended) only required with prebuilt binaries
     lazy = true,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "BufReadPost", "InsertEnter", "CmdlineEnter" },
     dependencies = 'saghen/blink.download',
     opts = {
         mappings = {
-            -- you can call require("blink.pairs.mappings").enable() and require("blink.pairs.mappings").disable() to enable/disable mappings at runtime
+            -- you can call require("blink.pairs.mappings").enable() and require("blink.pairs.mappings").disable()
+            -- to enable/disable mappings at runtime
             enabled = true,
             -- you may also disable with `vim.g.pairs = false` (global) or `vim.b.pairs = false` (per-buffer)
             disabled_filetypes = {},
@@ -16,7 +17,7 @@ return {
         highlights = {
             enabled = true,
             groups = {
-                'BlinkPairsOrange',
+                -- 'BlinkPairsOrange',
                 'BlinkPairsPurple',
                 'BlinkPairsBlue',
             },
