@@ -3,7 +3,7 @@ return {
         "toppair/peek.nvim",
         build = "deno task --quiet build:fast",
         lazy = true,
-        event = "VeryLazy",
+        event = "BufReadPost",
         config = function()
             local peek = require("peek")
             peek.setup({

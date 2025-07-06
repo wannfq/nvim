@@ -1,5 +1,5 @@
 local theme = 'tokyonight'
- 
+
 function ColorMyNvim(color)
 	color = color or theme
 	vim.cmd.colorscheme(color)
@@ -26,6 +26,13 @@ return {
                     -- Background styles. Can be "dark", "transparent" or "normal"
                     sidebars = "dark", -- style for sidebar
                     floats = "dark", -- style for floating windows
+                },
+                plugins = {
+                    lazy = true,
+                    blink = true,
+                    bufferline = true,
+                    gitsigns = true,
+                    yanky = true,
                 },
             })
 
@@ -132,6 +139,7 @@ return {
                     "float_win",
                     "telescope",
                     "bufferline",
+                    "which-key",
                 },
                 plugins = {
                     bufferline = {

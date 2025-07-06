@@ -3,7 +3,7 @@ return {
     lazy = true,
     cmd = { "DiffviewOpen", "DiffviewClose" },
     keys = {
-        { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Open Diffview" },
+        { "<leader>gD", "<cmd>DiffviewOpen<CR>", desc = "Open diff view" },
     },
     config = function()
         require("diffview").setup({
