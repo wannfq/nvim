@@ -47,6 +47,7 @@ return {
         priority = 1000,
         config = function()
             require('rose-pine').setup({
+                variant = "main",
                 disable_background = true,
                 styles = {
                     bold = true,
@@ -66,6 +67,7 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup({
+                flavour = "macchiato", -- latte, frappe, macchiato, mocha
                 no_italics = false,
                 styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
                     comments = { "italic" }, -- Change the style of comments

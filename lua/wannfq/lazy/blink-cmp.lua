@@ -3,7 +3,10 @@ return {
     version = '1.*',
     lazy = true,
     event = { "InsertEnter", "CmdlineEnter" },
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+        'rafamadriz/friendly-snippets',
+        'fang2hou/blink-copilot',
+    },
     opts = {
         keymap = {
             -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
@@ -21,6 +24,12 @@ return {
             menu = {
                 auto_show = true,
                 border = "rounded",
+                draw = {
+                    columns = {
+                        { "label", "label_description", gap = 1 },
+                        { "kind_icon", "kind", gap = 1 },
+                    },
+                },
             },
             documentation = {
                 auto_show = true,
@@ -35,12 +44,24 @@ return {
                 border = "rounded",
             },
         },
+        fuzzy = { implementation = "prefer_rust_with_warning" },
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
+            default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+            providers = {
+                copilot = {
+                    name = "copilot",
+                    module = "blink-copilot",
+                    score_offset = 100,
+                    async = true,
+                    opts = {
+                        kind_name = "Copilot",
+                        kind_icon = "",
+                    },
+                },
+            },
         },
-        fuzzy = { implementation = "prefer_rust_with_warning" },
     },
     opts_extend = { "sources.default" },
 }

@@ -13,7 +13,7 @@ return {
                 separator_style = { "", "" },
                 max_name_length = 24,
                 indicator = {
-                    icon = '▎', -- () this should be omitted if indicator style is not 'icon'
+                    icon = '▎', -- (, , 󰘠, , 󰶻) this should be omitted if indicator style is not 'icon'
                     style = "icon",
                 },
                 show_buffer_close_icons = false,
