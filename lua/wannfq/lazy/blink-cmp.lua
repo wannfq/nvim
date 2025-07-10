@@ -1,24 +1,24 @@
 return {
-    'saghen/blink.cmp',
-    version = '1.*',
+    "saghen/blink.cmp",
+    version = "1.*",
     lazy = true,
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-        'rafamadriz/friendly-snippets',
-        'fang2hou/blink-copilot',
+        "rafamadriz/friendly-snippets",
+        "fang2hou/blink-copilot",
     },
     opts = {
         keymap = {
             -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
             -- 'super-tab' for mappings similar to vscode (tab to accept)
             -- 'enter' for enter to accept
-            preset = 'default',
-            ['<C-j>'] = { 'select_next', 'fallback' },
-            ['<C-k>'] = { 'select_prev', 'fallback' },
+            preset = "default",
+            ["<C-j>"] = { "select_next", "fallback" },
+            ["<C-k>"] = { "select_prev", "fallback" },
         },
         appearance = {
             -- Adjusts spacing to ensure icons are aligned. 'mono' or 'normal'
-            nerd_font_variant = 'mono',
+            nerd_font_variant = "mono",
         },
         completion = {
             menu = {
@@ -48,7 +48,7 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+            default = { "lsp", "path", "snippets", "buffer", "copilot" },
             providers = {
                 copilot = {
                     name = "copilot",

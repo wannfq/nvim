@@ -1,13 +1,7 @@
-vim.keymap.set("n", "N", "Nzzzv") -- previous search
 vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
--- shift current line
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- down
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- up
-
--- append next line to current line, without changing the cursor position
--- vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<leader>a", "gg<S-v>G", { desc = "Select all" })
 
 -- keep cursor centered on jumping
 -- vim.keymap.set("n", "<C-d>", "<C-d>zz") -- scroll down
@@ -16,8 +10,8 @@ vim.keymap.set("n", "n", "nzzzv") -- next search result
 vim.keymap.set("n", "N", "Nzzzv") -- previous search
 
 -- black hole register
-vim.keymap.set("x", "<leader>p", [["_dP]]) -- paste (in visual mode)
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- delete 
+vim.keymap.set("x", "<leader>p", [["_dP]])         -- paste (in visual mode)
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- delete
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]]) -- yank (on contents)
 
 -- yank into system clipboard

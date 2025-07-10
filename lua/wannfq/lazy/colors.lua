@@ -1,11 +1,12 @@
-local theme = 'tokyonight'
+local theme = "tokyonight"
 
 function ColorMyNvim(color)
-	color = color or theme
-	vim.cmd.colorscheme(color)
+    color = color or theme
+    vim.cmd.colorscheme(color)
 
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.o.background = "dark"
 end
 
 return {
@@ -15,7 +16,7 @@ return {
         enabled = theme == "tokyonight",
         priority = 1000,
         config = function()
-            require("tokyonight").setup({
+            require("tokyonight").setup {
                 style = "storm", -- Available styles: `storm`, `moon`, a darker variant `night` and `day`
                 transparent = true,
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
@@ -23,7 +24,7 @@ return {
                     -- Style to be applied to different syntax groups
                     comments = { italic = true },
                     keywords = { italic = true },
-                    -- Background styles. Can be "dark", "transparent" or "normal"
+                    -- Background styles. Can be 'dark', 'transparent' or 'normal'
                     sidebars = "dark", -- style for sidebar
                     floats = "dark", -- style for floating windows
                 },
@@ -34,10 +35,10 @@ return {
                     gitsigns = true,
                     yanky = true,
                 },
-            })
+            }
 
-            ColorMyNvim();
-        end
+            ColorMyNvim()
+        end,
     },
 
     {
@@ -46,7 +47,7 @@ return {
         enabled = theme == "rose-pine",
         priority = 1000,
         config = function()
-            require('rose-pine').setup({
+            require("rose-pine").setup {
                 variant = "main",
                 disable_background = true,
                 styles = {
@@ -54,10 +55,10 @@ return {
                     italic = true,
                     transparency = true,
                 },
-            })
+            }
 
-            ColorMyNvim();
-        end
+            ColorMyNvim()
+        end,
     },
 
     {
@@ -66,7 +67,7 @@ return {
         enabled = theme == "catppuccin",
         priority = 1000,
         config = function()
-            require("catppuccin").setup({
+            require("catppuccin").setup {
                 flavour = "macchiato", -- latte, frappe, macchiato, mocha
                 no_italics = false,
                 styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
@@ -79,11 +80,11 @@ return {
                     -- nvimtree = true,
                     treesitter = true,
                     notify = true,
-                }
-            })
+                },
+            }
 
-            ColorMyNvim();
-        end
+            ColorMyNvim()
+        end,
     },
 
     {
@@ -92,8 +93,8 @@ return {
         enabled = theme == "kanagawa",
         priority = 1000,
         config = function()
-            require("kanagawa").setup({
-                theme = "wave", -- Load "wave", "dragon" or "lotus" theme
+            require("kanagawa").setup {
+                theme = "wave", -- Load 'wave', 'dragon' or 'lotus' theme
                 compile = false, -- enable compiling the colorscheme
                 undercurl = true, -- enable undercurls
                 commentStyle = { italic = true },
@@ -108,10 +109,13 @@ return {
                     palette = {},
                     theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
                 },
-            })
+            }
 
-            ColorMyNvim();
-        end
+            ColorMyNvim()
+
+            local highlights = require "rose-pine.plugins.bufferline"
+            require("bufferline").setup { highlights = highlights }
+        end,
     },
 
     {
@@ -120,7 +124,7 @@ return {
         enabled = theme == "monokai-pro",
         priority = 1000,
         config = function()
-            require("monokai-pro").setup({
+            require("monokai-pro").setup {
                 filter = "pro", -- classic | octagon | pro | machine | ristretto | spectrum
                 transparent_background = true,
                 terminal_colors = true,
@@ -137,10 +141,10 @@ return {
                 },
                 inc_search = "background", -- underline | background
                 background_clear = {
-                    -- "float_win", "toggleterm", "telescope", "which-key", "renamer", "neo-tree", "nvim-tree", "bufferline"
+                    -- 'float_win', 'toggleterm', 'telescope', 'which-key', 'renamer', 'neo-tree', 'nvim-tree', 'bufferline'
+                    -- 'bufferline',
                     "float_win",
                     "telescope",
-                    "bufferline",
                     "which-key",
                 },
                 plugins = {
@@ -149,9 +153,9 @@ return {
                         underline_visible = false,
                     },
                 },
-            })
+            }
 
-            ColorMyNvim();
-        end
+            ColorMyNvim()
+        end,
     },
 }

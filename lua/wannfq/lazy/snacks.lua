@@ -3,6 +3,9 @@ return {
         "folke/snacks.nvim",
         priority = 1000,
         lazy = false,
+        -- dependencies = {
+        --     "echasnovski/mini.icons",
+        -- },
         opts = {
             bigfile = { enabled = true },
             dashboard = {
@@ -39,6 +42,9 @@ return {
             },
             picker = {
                 enabled = true,
+                -- layout = {
+                --     preset = "telescope",
+                -- },
                 sources = {
                     buffers = {
                         focus = "list",
