@@ -12,5 +12,23 @@ return {
             end,
         })
         vim.fn["copilot#OnFileType"]()
+
+        Snacks.toggle
+            .new({
+                name = "Copilot ",
+                get = function()
+                    return require("copilot-status").is_enabled()
+                end,
+                set = function(state)
+                    if state then
+                        vim.b.copilot_enabled = 1
+                        vim.cmd "Copilot enable"
+                    else
+                        vim.b.copilot_enabled = 0
+                        vim.cmd "Copilot disable"
+                    end
+                end,
+            })
+            :map "<leader>tC"
     end,
 }

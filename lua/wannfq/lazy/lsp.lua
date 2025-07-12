@@ -10,27 +10,52 @@ return {
         "saghen/blink.cmp",
     },
     config = function()
-        require("fidget").setup({})
-        require("mason").setup({})
-        require("mason-lspconfig").setup({
+        require("fidget").setup {}
+        require("mason").setup {}
+        require("mason-lspconfig").setup {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
                 "ts_ls",
                 "gopls",
             },
-        })
-        vim.diagnostic.config({
-            signs = true,
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
+        }
+
+        local signs = {
+            ERROR = "", --  
+            WARN = " ", --  
+            HINT = " ", -- 󰌵  󰮍 
+            INFO = " ", --  
+        }
+
+        vim.diagnostic.config {
+            update_in_insert = true, -- Might impact performance
+            signs = {
+                text = {
+                    [vim.diagnostic.severity.ERROR] = signs.ERROR,
+                    [vim.diagnostic.severity.WARN] = signs.WARN,
+                    [vim.diagnostic.severity.HINT] = signs.HINT,
+                    [vim.diagnostic.severity.INFO] = signs.INFO,
+                },
             },
-        })
-    end
+            virtual_text = {
+                current_line = true,
+                prefix = "",
+                -- prefix = function(diagnostic)
+                --     local severity = diagnostic.severity
+                --     local severityName = vim.diagnostic.severity[severity]
+                --     return signs[severityName] or ""
+                -- end,
+            },
+            -- float = {
+            --     focusable = false,
+            --     style = "minimal",
+            --     border = "rounded",
+            --     source = "always",
+            --     header = "",
+            --     prefix = "",
+            --     scope = "line",
+            -- },
+        }
+    end,
 }

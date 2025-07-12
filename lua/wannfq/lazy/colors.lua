@@ -1,18 +1,16 @@
-local theme = "tokyonight"
+local theme = "duskfox"
 
 function ColorMyNvim(color)
     color = color or theme
     vim.cmd.colorscheme(color)
-
+    vim.opt.background = "dark"
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    vim.o.background = "dark"
 end
 
 return {
     {
         "folke/tokyonight.nvim",
-        name = "tokyonight",
         enabled = theme == "tokyonight",
         priority = 1000,
         config = function()
@@ -21,10 +19,10 @@ return {
                 transparent = true,
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
                 styles = {
-                    -- Style to be applied to different syntax groups
                     comments = { italic = true },
                     keywords = { italic = true },
-                    -- Background styles. Can be 'dark', 'transparent' or 'normal'
+                    functions = {},
+                    variables = {},
                     sidebars = "dark", -- style for sidebar
                     floats = "dark", -- style for floating windows
                 },
@@ -34,10 +32,17 @@ return {
                     bufferline = true,
                     gitsigns = true,
                     yanky = true,
+                    lualine = true,
                 },
             }
 
             ColorMyNvim()
+
+            require("lualine").setup {
+                options = {
+                    theme = "tokyonight",
+                },
+            }
         end,
     },
 
@@ -58,6 +63,9 @@ return {
             }
 
             ColorMyNvim()
+
+            local highlights = require "rose-pine.plugins.bufferline"
+            require("bufferline").setup { highlights = highlights }
         end,
     },
 
@@ -73,6 +81,8 @@ return {
                 styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
                     comments = { "italic" }, -- Change the style of comments
                     conditionals = { "italic" },
+                    keywords = { "italic" },
+                    types = { "bold" },
                 },
                 integrations = {
                     cmp = true,
@@ -89,38 +99,62 @@ return {
 
     {
         "rebelot/kanagawa.nvim",
-        name = "kanagawa",
         enabled = theme == "kanagawa",
         priority = 1000,
         config = function()
             require("kanagawa").setup {
-                theme = "wave", -- Load 'wave', 'dragon' or 'lotus' theme
+                theme = "lotus", -- Load 'wave', 'dragon' or 'lotus' theme
                 compile = false, -- enable compiling the colorscheme
                 undercurl = true, -- enable undercurls
                 commentStyle = { italic = true },
                 functionStyle = {},
                 keywordStyle = { italic = true },
-                statementStyle = { bold = true },
-                typeStyle = {},
+                statementStyle = {},
+                typeStyle = { bold = true, italic = true },
                 transparent = true, -- do not set background color
                 dimInactive = false, -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
-                colors = { -- add/modify theme and palette colors
-                    palette = {},
-                    theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+                all = {
+                    ui = {
+                        bg_gutter = "none",
+                        float = {
+                            bg = "none",
+                        },
+                    },
                 },
+                overrides = function(colors)
+                    local color_scheme = colors.theme
+                    local makeDiagnosticColor = function(color)
+                        local c = require "kanagawa.lib.color"
+                        return { fg = color, bg = c(color):blend(color_scheme.ui.bg, 0.95):to_hex() }
+                    end
+                    return {
+                        DiagnosticVirtualTextHint = makeDiagnosticColor(color_scheme.diag.hint),
+                        DiagnosticVirtualTextInfo = makeDiagnosticColor(color_scheme.diag.info),
+                        DiagnosticVirtualTextWarn = makeDiagnosticColor(color_scheme.diag.warning),
+                        DiagnosticVirtualTextError = makeDiagnosticColor(color_scheme.diag.error),
+
+                        NormalFloat = { bg = "none" },
+                        FloatBorder = { bg = "none" },
+                        FloatTitle = { bg = "none" },
+
+                        NormalDark = { fg = color_scheme.ui.fg_dim, bg = color_scheme.ui.bg_m3 },
+                        LazyNormal = { bg = color_scheme.ui.bg_m3, fg = color_scheme.ui.fg_dim },
+                        MasonNormal = { bg = color_scheme.ui.bg_m3, fg = color_scheme.ui.fg_dim },
+
+                        BlinkCmpMenu = { bg = colors.palette.dragonBlack3 },
+                        BlinkCmpLabelDetail = { bg = colors.palette.dragonBlack3 },
+                        BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
+                    }
+                end,
             }
 
             ColorMyNvim()
-
-            local highlights = require "rose-pine.plugins.bufferline"
-            require("bufferline").setup { highlights = highlights }
         end,
     },
 
     {
         "loctvl842/monokai-pro.nvim",
-        name = "monokai-pro",
         enabled = theme == "monokai-pro",
         priority = 1000,
         config = function()
@@ -132,19 +166,19 @@ return {
                 styles = {
                     comment = { italic = true },
                     keyword = { italic = true }, -- any other keyword
-                    type = { italic = true }, -- (preferred) int, long, char, etc
-                    storageclass = { italic = true }, -- static, register, volatile, etc
-                    structure = { italic = true }, -- struct, union, enum, etc
-                    parameter = { italic = true }, -- parameter pass in function
-                    annotation = { italic = true },
-                    tag_attribute = { italic = true }, -- attribute of tag in reactjs
+                    type = { italic = true, bold = true }, -- (preferred) int, long, char, etc
+                    -- storageclass = { italic = true }, -- static, register, volatile, etc
+                    -- structure = { italic = true }, -- struct, union, enum, etc
+                    -- parameter = { italic = true }, -- parameter pass in function
+                    -- annotation = { italic = true },
+                    -- tag_attribute = { italic = true }, -- attribute of tag in reactjs
                 },
                 inc_search = "background", -- underline | background
                 background_clear = {
                     -- 'float_win', 'toggleterm', 'telescope', 'which-key', 'renamer', 'neo-tree', 'nvim-tree', 'bufferline'
-                    -- 'bufferline',
+                    "bufferline",
                     "float_win",
-                    "telescope",
+                    -- "telescope",
                     "which-key",
                 },
                 plugins = {
@@ -156,6 +190,159 @@ return {
             }
 
             ColorMyNvim()
+
+            require("lualine").setup {
+                options = {
+                    theme = "monokai-pro",
+                },
+            }
+        end,
+    },
+
+    {
+        "navarasu/onedark.nvim",
+        enabled = theme == "onedark",
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+            require("onedark").setup {
+                style = "dark",
+                transparent = true, -- Show/hide background
+
+                code_style = {
+                    comments = "italic",
+                    keywords = "italic",
+                    -- functions = "italic",
+                },
+
+                lualine = {
+                    transparent = true, -- lualine center bar transparency
+                },
+
+                diagnostics = {
+                    darker = true, -- darker colors for diagnostic
+                    undercurl = true, -- use undercurl instead of underline for diagnostics
+                    background = true, -- use background color for virtual text
+                },
+            }
+            require("onedark").load()
+
+            ColorMyNvim()
+
+            require("lualine").setup {
+                options = {
+                    theme = "onedark",
+                },
+            }
+        end,
+    },
+
+    {
+        "marko-cerovac/material.nvim",
+        enabled = theme == "material",
+        priority = 1000,
+        config = function()
+            require("material").setup {
+                contrast = {
+                    sidebars = true, -- Enable contrast for sidebars like NvimTree
+                    floating_windows = true, -- Enable contrast for floating windows
+                    lsp_virtual_text = true, -- Enable contrasted background for lsp virtual text
+                },
+                styles = { -- Give comments style such as bold, italic, underline etc.
+                    comments = {
+                        italic = true,
+                    },
+                    keywords = {
+                        italic = true,
+                    },
+                    functions = {
+                        -- italic = true,
+                    },
+                    variables = {
+                        -- bold = true,
+                    },
+                    operators = {},
+                    types = {
+                        bold = true,
+                        italic = true,
+                    },
+                },
+                disable = {
+                    background = true,
+                },
+                plugins = {
+                    "blink",
+                    -- "coc",
+                    -- "colorful-winsep",
+                    -- "dap",
+                    "dashboard",
+                    -- "eyeliner",
+                    "fidget",
+                    -- "flash",
+                    "gitsigns",
+                    -- "harpoon",
+                    -- "hop",
+                    -- "illuminate",
+                    -- "indent-blankline",
+                    -- "lspsaga",
+                    -- "mini",
+                    -- "neo-tree",
+                    -- "neogit",
+                    -- "neorg",
+                    -- "neotest",
+                    -- "noice",
+                    "nvim-cmp",
+                    -- "nvim-navic",
+                    -- "nvim-notify",
+                    -- "nvim-tree",
+                    "nvim-web-devicons",
+                    -- "rainbow-delimiters",
+                    -- "sneak",
+                    -- "telescope",
+                    "trouble",
+                    "which-key",
+                },
+                lualine_style = "stealth",
+            }
+
+            vim.g.material_style = "darker" -- oceanic | palenight | deep ocean | lighter | darker
+
+            ColorMyNvim()
+
+            require("lualine").setup {
+                options = {
+                    theme = "material",
+                },
+            }
+        end,
+    },
+
+    {
+        "EdenEast/nightfox.nvim",
+        enabled = theme == "duskfox", -- nightfox, duskfox, terafox, carbonfox
+        priority = 1000,
+        config = function()
+            require("nightfox").setup {
+                palettes = {
+                    -- carbonfox = {},
+                },
+                options = {
+                    transparent = true, -- Disable setting background
+                    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+                    styles = { -- Style to be applied to different syntax groups
+                        comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+                        keywords = "italic",
+                        types = "italic,bold",
+                    },
+                },
+            }
+
+            ColorMyNvim()
+
+            require("lualine").setup {
+                options = {
+                    theme = "nightfox",
+                },
+            }
         end,
     },
 }

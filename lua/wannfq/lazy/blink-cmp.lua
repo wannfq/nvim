@@ -57,7 +57,8 @@ return {
                     async = true,
                     opts = {
                         kind_name = "Copilot",
-                        kind_icon = "",
+                        kind_icon = " ",
+                        debounce = 500,
                     },
                 },
             },

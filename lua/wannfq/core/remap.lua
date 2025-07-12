@@ -10,9 +10,8 @@ vim.keymap.set("n", "n", "nzzzv") -- next search result
 vim.keymap.set("n", "N", "Nzzzv") -- previous search
 
 -- black hole register
-vim.keymap.set("x", "<leader>p", [["_dP]])         -- paste (in visual mode)
+vim.keymap.set("x", "<leader>p", [["_dP]]) -- paste (in visual mode)
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- delete
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]]) -- yank (on contents)
 
 -- yank into system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>Y", [["+Y]])

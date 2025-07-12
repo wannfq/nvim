@@ -1,6 +1,6 @@
 local get_active_lsp = function()
     local message = "No Active Lsp"
-    local buf_ft = vim.api.nvim_get_option_value("filetype", {})
+    local buffer_ft = vim.api.nvim_get_option_value("filetype", {})
     local clients = vim.lsp.get_clients { bufnr = 0 }
 
     if next(clients) == nil then
@@ -9,7 +9,7 @@ local get_active_lsp = function()
 
     for _, client in ipairs(clients) do
         local filetypes = client.config.filetypes
-        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        if filetypes and vim.fn.index(filetypes, buffer_ft) ~= -1 then
             return client.name
         end
     end
@@ -25,7 +25,7 @@ return {
         "ofseed/copilot-status.nvim",
     },
     config = function()
-        require("lualine").setup({
+        require("lualine").setup {
             options = {
                 theme = "auto",
                 component_separators = { left = "│", right = "│" },
@@ -40,7 +40,7 @@ return {
                     {
                         "fancy_mode",
                         width = 8,
-                    }
+                    },
                 },
                 lualine_b = {
                     { "fancy_branch" },
@@ -68,8 +68,8 @@ return {
                         show_running = true,
                         symbols = {
                             status = {
-                                enabled = " ",
-                                disabled = " ",
+                                enabled = " ", -- 
+                                disabled = " ",
                             },
                             spinners = require("copilot-status.spinners").dots,
                         },
@@ -80,10 +80,9 @@ return {
                     {
                         get_active_lsp,
                         icon = "󰒍",
-                    }
+                    },
                 },
-            }
-        })
-        
+            },
+        }
     end,
 }
