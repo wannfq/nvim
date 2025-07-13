@@ -4,17 +4,17 @@ return {
     lazy = false,
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-        local bufferline = require("bufferline");
-        bufferline.setup({
+        local bufferline = require "bufferline"
+        bufferline.setup {
             options = {
                 style_preset = {
                     bufferline.style_preset.no_italic,
-                    bufferline.style_preset.no_bold,
+                    -- bufferline.style_preset.no_bold,
                 },
                 separator_style = { "", "" },
                 max_name_length = 24,
                 indicator = {
-                    icon = '▎', -- (, , 󰘠, , 󰶻) this should be omitted if indicator style is not 'icon'
+                    icon = "▎", -- (, , 󰘠, , 󰶻) this should be omitted if indicator style is not 'icon'
                     style = "icon",
                 },
                 show_buffer_close_icons = false,
@@ -24,10 +24,10 @@ return {
                         filetype = "NvimTree",
                         text = "File Explorer",
                         highlight = "Directory",
-                        separator = true -- use a "true" to enable the default, or set your own character
+                        separator = true, -- use a "true" to enable the default, or set your own character
                     },
                 },
             },
-        });
-    end
+        }
+    end,
 }

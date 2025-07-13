@@ -1,4 +1,4 @@
-local theme = "duskfox"
+local theme = "ayu"
 
 function ColorMyNvim(color)
     color = color or theme
@@ -123,28 +123,26 @@ return {
                     },
                 },
                 overrides = function(colors)
-                    local color_scheme = colors.theme
+                    local cs = colors.theme
                     local makeDiagnosticColor = function(color)
                         local c = require "kanagawa.lib.color"
-                        return { fg = color, bg = c(color):blend(color_scheme.ui.bg, 0.95):to_hex() }
+                        return { fg = color, bg = c(color):blend(cs.ui.bg, 0.95):to_hex() }
                     end
                     return {
-                        DiagnosticVirtualTextHint = makeDiagnosticColor(color_scheme.diag.hint),
-                        DiagnosticVirtualTextInfo = makeDiagnosticColor(color_scheme.diag.info),
-                        DiagnosticVirtualTextWarn = makeDiagnosticColor(color_scheme.diag.warning),
-                        DiagnosticVirtualTextError = makeDiagnosticColor(color_scheme.diag.error),
+                        DiagnosticVirtualTextHint = makeDiagnosticColor(cs.diag.hint),
+                        DiagnosticVirtualTextInfo = makeDiagnosticColor(cs.diag.info),
+                        DiagnosticVirtualTextWarn = makeDiagnosticColor(cs.diag.warning),
+                        DiagnosticVirtualTextError = makeDiagnosticColor(cs.diag.error),
 
                         NormalFloat = { bg = "none" },
                         FloatBorder = { bg = "none" },
                         FloatTitle = { bg = "none" },
+                        Pmenu = { bg = "none" },
 
-                        NormalDark = { fg = color_scheme.ui.fg_dim, bg = color_scheme.ui.bg_m3 },
-                        LazyNormal = { bg = color_scheme.ui.bg_m3, fg = color_scheme.ui.fg_dim },
-                        MasonNormal = { bg = color_scheme.ui.bg_m3, fg = color_scheme.ui.fg_dim },
+                        LazyNormal = { bg = "none", fg = cs.ui.fg_dim },
+                        MasonNormal = { bg = "none", fg = cs.ui.fg_dim },
 
-                        BlinkCmpMenu = { bg = colors.palette.dragonBlack3 },
-                        BlinkCmpLabelDetail = { bg = colors.palette.dragonBlack3 },
-                        BlinkCmpMenuSelection = { bg = colors.palette.waveBlue1 },
+                        BlinkCmpMenu = { bg = "none" },
                     }
                 end,
             }
@@ -187,6 +185,17 @@ return {
                         underline_visible = false,
                     },
                 },
+                overrides = function(colors)
+                    return {
+                        NormalFloat = { bg = "none" },
+                        FloatBorder = { bg = "none" },
+                        FloatTitle = { bg = "none" },
+                        Pmenu = { bg = "none" },
+
+                        BlinkCmpMenu = { bg = "none" },
+                        BlinkCmpMenuSelection = { bg = colors.base.dark },
+                    }
+                end,
             }
 
             ColorMyNvim()
@@ -222,6 +231,10 @@ return {
                     darker = true, -- darker colors for diagnostic
                     undercurl = true, -- use undercurl instead of underline for diagnostics
                     background = true, -- use background color for virtual text
+                },
+                highlights = {
+                    Pmenu = { bg = "none" },
+                    BlinkCmpMenuSelection = { bg = "$bg2" },
                 },
             }
             require("onedark").load()
@@ -271,31 +284,15 @@ return {
                 },
                 plugins = {
                     "blink",
-                    -- "coc",
-                    -- "colorful-winsep",
-                    -- "dap",
                     "dashboard",
-                    -- "eyeliner",
                     "fidget",
-                    -- "flash",
                     "gitsigns",
-                    -- "harpoon",
-                    -- "hop",
-                    -- "illuminate",
-                    -- "indent-blankline",
-                    -- "lspsaga",
                     -- "mini",
-                    -- "neo-tree",
                     -- "neogit",
-                    -- "neorg",
                     -- "neotest",
-                    -- "noice",
                     "nvim-cmp",
-                    -- "nvim-navic",
-                    -- "nvim-notify",
                     -- "nvim-tree",
                     "nvim-web-devicons",
-                    -- "rainbow-delimiters",
                     -- "sneak",
                     -- "telescope",
                     "trouble",
@@ -322,9 +319,6 @@ return {
         priority = 1000,
         config = function()
             require("nightfox").setup {
-                palettes = {
-                    -- carbonfox = {},
-                },
                 options = {
                     transparent = true, -- Disable setting background
                     terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
@@ -343,6 +337,44 @@ return {
                     theme = "nightfox",
                 },
             }
+        end,
+    },
+
+    {
+        "Shatur/neovim-ayu",
+        enabled = theme == "ayu",
+        priority = 1000,
+        config = function()
+            local colors = require "ayu.colors"
+            require("ayu").setup {
+                mirage = true, -- Enable mirage variant
+                overrides = {
+                    Normal = { bg = "None" },
+                    NormalFloat = { bg = "none" },
+                    ColorColumn = { bg = "None" },
+                    SignColumn = { bg = "None" },
+                    Folded = { bg = "None" },
+                    FoldColumn = { bg = "None" },
+                    CursorLine = { bg = "None" },
+                    CursorColumn = { bg = "None" },
+                    VertSplit = { bg = "None" },
+                    Pmenu = { fg = colors.fg, bg = "None" },
+                },
+            }
+
+            ColorMyNvim()
+
+            require("lualine").setup {
+                options = {
+                    theme = "ayu",
+                },
+            }
+
+            vim.api.nvim_set_hl(0, "BlinkCmpMenu", { bg = "none" })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuSelection", { bg = colors.selection_bg })
+            vim.api.nvim_set_hl(0, "BlinkCmpKind", { fg = colors.ui })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabel", { fg = colors.fg })
+            vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { fg = colors.regexp, bold = true })
         end,
     },
 }
