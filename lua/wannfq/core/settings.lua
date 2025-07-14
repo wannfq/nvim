@@ -30,4 +30,4 @@ vim.opt.isfname:append "@-@"
 vim.opt.updatetime = 500 -- faster completion
 
 -- vim.opt.colorcolumn = "80" -- set color column at 80 characters
--- vim.opt.cursorline = true -- highlight the current line
+vim.opt.cursorline = true -- highlight the current line

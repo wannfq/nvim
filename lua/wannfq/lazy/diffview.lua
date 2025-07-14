@@ -6,8 +6,8 @@ return {
         { "<leader>gD", "<cmd>DiffviewOpen<CR>", desc = "Open diff view" },
     },
     config = function()
-        require("diffview").setup({
-             keymaps = {
+        require("diffview").setup {
+            keymaps = {
                 view = {
                     { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close" } },
                 },
@@ -18,6 +18,7 @@ return {
                     { "n", "q", "<cmd>DiffviewClose<cr>", { desc = "Close" } },
                 },
             },
-        })
+        }
+        vim.opt.fillchars:append { diff = " " } -- ╱
     end,
 }

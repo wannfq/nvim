@@ -13,8 +13,9 @@ return {
             -- 'super-tab' for mappings similar to vscode (tab to accept)
             -- 'enter' for enter to accept
             preset = "default",
-            ["<C-j>"] = { "select_next", "fallback" },
-            ["<C-k>"] = { "select_prev", "fallback" },
+            -- ["<C-j>"] = { "select_next", "fallback" },
+            -- ["<C-k>"] = { "select_prev", "fallback" },
+            ["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
         },
         appearance = {
             -- Adjusts spacing to ensure icons are aligned. 'mono' or 'normal'
