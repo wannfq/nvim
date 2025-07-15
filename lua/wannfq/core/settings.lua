@@ -1,33 +1,46 @@
--- vim.opt.guicursor = "" -- block cursor
-vim.opt.clipboard = "unnamedplus" -- use system clipborad for yank
+-- vim.o.guicursor = "" -- block cursor
+vim.o.clipboard = "unnamedplus" -- use system clipborad for yank
 
-vim.opt.nu = true -- set line numbers
-vim.opt.relativenumber = true -- use relative line numbers
+vim.o.nu = true -- set line numbers
+vim.o.relativenumber = true -- use relative line numbers
+
+vim.g.have_nerd_font = true
+
+-- don't show the mode, since it's already in the status line
+-- vim.o.showmode = false
+
+-- case-insensitive searching UNLESS \C or one or more capital letters in the search term
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- set tab size to 4 spaces
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
 
-vim.opt.wrap = false
+vim.o.wrap = false
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
-vim.opt.undofile = true
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undodir = os.getenv "HOME" .. "/.vim/undodir"
+vim.o.undofile = true
 
-vim.opt.hlsearch = false -- disable highlight on search
-vim.opt.incsearch = true -- incremental search
+vim.o.hlsearch = false -- disable highlight on search
+vim.o.incsearch = true -- incremental search
 
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append "@-@"
+vim.o.scrolloff = 8
+vim.o.signcolumn = "yes"
+vim.o.isfname:append "@-@"
 
-vim.opt.updatetime = 500 -- faster completion
+vim.o.updatetime = 200 -- faster completion
+vim.o.timeoutlen = 300
 
--- vim.opt.colorcolumn = "80" -- set color column at 80 characters
-vim.opt.cursorline = true -- highlight the current line
+-- vim.o.colorcolumn = "80" -- set color column at 80 characters
+vim.o.cursorline = true -- highlight the current line
+
+-- vim.o.list = true
+-- vim.o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
