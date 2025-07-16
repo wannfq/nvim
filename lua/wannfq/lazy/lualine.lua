@@ -20,7 +20,6 @@ return {
     "nvim-lualine/lualine.nvim",
     lazy = false,
     dependencies = {
-        -- "nvim-tree/nvim-web-devicons",
         "meuter/lualine-so-fancy.nvim",
         "ofseed/copilot-status.nvim",
     },

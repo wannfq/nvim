@@ -4,18 +4,28 @@ return {
     event = "VeryLazy",
     config = function()
         require("conform").setup {
-            format_on_save = {
-                lsp_fallback = true,
-                timeout_ms = 1000,
-            },
-            formatters_by_ft = {
-                javascript = { "prettierd" },
-                typescript = { "prettierd" },
-                go = { "gofumpt" },
-                lua = { "stylua" },
-                python = { "black" },
-                html = { "prettierd" },
-            },
+            format_on_save = function(bufnr)
+                -- Disable with a global or buffer-local variable
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                return {
+                    lsp_fallback = true,
+                    timeout_ms = 500,
+                }
+            end,
         }
+
+        Snacks.toggle
+            .new({
+                name = "Format on Save",
+                get = function()
+                    return not vim.g.disable_autoformat
+                end,
+                set = function(state)
+                    vim.g.disable_autoformat = not state
+                end,
+            })
+            :map("<leader>tf")
     end,
 }

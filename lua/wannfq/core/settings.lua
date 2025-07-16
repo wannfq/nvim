@@ -1,8 +1,8 @@
 -- vim.opt.guicursor = "" -- block cursor
 vim.opt.clipboard = "unnamedplus" -- use system clipborad for yank
 
-vim.opt.number = true -- set line numbers
-vim.opt.relativenumber = true -- use relative line numbers
+vim.opt.number = true             -- set line numbers
+vim.opt.relativenumber = true     -- use relative line numbers
 
 -- don't show the mode, since it's already in the status line
 -- vim.opt.showmode = false
@@ -43,4 +43,4 @@ vim.opt.cursorline = true -- highlight the current line
 vim.opt.list = true
 vim.opt.listchars = "trail:·,nbsp:␣,tab:» ," -- eol:↴
 
-vim.g.have_nerd_font = true
+vim.lsp.inlay_hint.enable(true)

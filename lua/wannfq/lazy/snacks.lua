@@ -69,6 +69,9 @@ return {
                 --     preset = "telescope",
                 -- },
                 sources = {
+                    files = {
+                        hidden = true,
+                    },
                     buffers = {
                         focus = "list",
                     },
