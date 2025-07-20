@@ -10,7 +10,7 @@ vim.keymap.set("n", "n", "nzzzv") -- next search result
 vim.keymap.set("n", "N", "Nzzzv") -- previous search
 
 -- black hole register
-vim.keymap.set("x", "<leader>p", [["_dP]]) -- paste (in visual mode)
+vim.keymap.set("x", "<leader>p", [["_dP]])         -- paste (in visual mode)
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]]) -- delete
 
 -- yank into system clipboard
@@ -19,6 +19,9 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 
 -- disable capital Q on normal mode
 vim.keymap.set("n", "Q", "<nop>")
+
+-- go back to last buffer
+vim.keymap.set("n", "<leader>bb", "<C-6>", { desc = "Go back to last buffer" })
 
 -- navigation Quickfix
 vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")

@@ -1,9 +1,8 @@
-local theme = "ayu"
+local theme = "catppuccin"
 
 function ColorMyNvim(color)
     color = color or theme
     vim.cmd.colorscheme(color)
-    vim.opt.background = "dark"
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
@@ -15,7 +14,7 @@ return {
         priority = 1000,
         config = function()
             require("tokyonight").setup {
-                style = "storm",        -- Available styles: `storm`, `moon`, a darker variant `night` and `day`
+                style = "storm", -- Available styles: `storm`, `moon`, a darker variant `night` and `day`
                 transparent = true,
                 terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
                 styles = {
@@ -24,7 +23,7 @@ return {
                     functions = {},
                     variables = {},
                     sidebars = "dark", -- style for sidebar
-                    floats = "dark",   -- style for floating windows
+                    floats = "dark", -- style for floating windows
                 },
                 plugins = {
                     lazy = true,
@@ -74,9 +73,10 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup {
-                flavour = "macchiato",       -- latte, frappe, macchiato, mocha
+                flavour = "frappe", -- latte, frappe, macchiato, mocha
                 no_italics = false,
-                styles = {                   -- Handles the styles of general hi groups (see `:h highlight-args`):
+                transparent_background = true, -- disables setting the background color
+                styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
                     comments = { "italic" }, -- Change the style of comments
                     conditionals = { "italic" },
                     keywords = { "italic" },
@@ -84,11 +84,30 @@ return {
                 },
                 integrations = {
                     cmp = true,
-                    gitsigns = true,
-                    -- nvimtree = true,
+                    gitsigns = {
+                        enabled = true,
+                        transparent = true,
+                    },
+                    diffview = true,
                     treesitter = true,
                     notify = true,
+                    lsp_trouble = true,
+                    snacks = {
+                        enabled = false,
+                        indent_scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+                    },
+                    blink_cmp = {
+                        style = "bordered",
+                    },
                 },
+                custom_highlights = function(colors)
+                    return {
+                        Pmenu = { bg = colors.none },
+                        BlinkCmpKind = { fg = colors.blue, italic = true },
+                        BlinkCmpLabel = { fg = colors.lavender },
+                        BlinkCmpLabelMatch = { fg = colors.sky, bold = true },
+                    }
+                end,
             }
 
             ColorMyNvim()
@@ -101,16 +120,16 @@ return {
         priority = 1000,
         config = function()
             require("kanagawa").setup {
-                theme = "lotus",  -- Load 'wave', 'dragon' or 'lotus' theme
-                compile = false,  -- enable compiling the colorscheme
+                theme = "lotus", -- Load 'wave', 'dragon' or 'lotus' theme
+                compile = false, -- enable compiling the colorscheme
                 undercurl = true, -- enable undercurls
                 commentStyle = { italic = true },
                 functionStyle = {},
                 keywordStyle = { italic = true },
                 statementStyle = {},
                 typeStyle = { bold = true, italic = true },
-                transparent = true,    -- do not set background color
-                dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+                transparent = true, -- do not set background color
+                dimInactive = false, -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
                 all = {
                     ui = {
@@ -161,7 +180,7 @@ return {
                 devicons = true, -- highlight the icons of `nvim-web-devicons`
                 styles = {
                     comment = { italic = true },
-                    keyword = { italic = true },           -- any other keyword
+                    keyword = { italic = true }, -- any other keyword
                     type = { italic = true, bold = true }, -- (preferred) int, long, char, etc
                     -- storageclass = { italic = true }, -- static, register, volatile, etc
                     -- structure = { italic = true }, -- struct, union, enum, etc
@@ -226,8 +245,8 @@ return {
                 },
 
                 diagnostics = {
-                    darker = true,     -- darker colors for diagnostic
-                    undercurl = true,  -- use undercurl instead of underline for diagnostics
+                    darker = true, -- darker colors for diagnostic
+                    undercurl = true, -- use undercurl instead of underline for diagnostics
                     background = true, -- use background color for virtual text
                 },
                 highlights = {
@@ -254,11 +273,11 @@ return {
         config = function()
             require("material").setup {
                 contrast = {
-                    sidebars = true,         -- Enable contrast for sidebars like NvimTree
+                    sidebars = true, -- Enable contrast for sidebars like NvimTree
                     floating_windows = true, -- Enable contrast for floating windows
                     lsp_virtual_text = true, -- Enable contrasted background for lsp virtual text
                 },
-                styles = {                   -- Give comments style such as bold, italic, underline etc.
+                styles = { -- Give comments style such as bold, italic, underline etc.
                     comments = {
                         italic = true,
                     },
@@ -318,9 +337,9 @@ return {
         config = function()
             require("nightfox").setup {
                 options = {
-                    transparent = true,      -- Disable setting background
-                    terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-                    styles = {               -- Style to be applied to different syntax groups
+                    transparent = true, -- Disable setting background
+                    terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+                    styles = { -- Style to be applied to different syntax groups
                         comments = "italic", -- Value is any valid attr-list value `:help attr-list`
                         keywords = "italic",
                         types = "italic,bold",

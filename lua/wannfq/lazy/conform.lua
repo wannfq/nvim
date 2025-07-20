@@ -1,7 +1,18 @@
 return {
     "stevearc/conform.nvim",
     lazy = true,
-    event = "VeryLazy",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+        {
+            "<leader>bf",
+            function()
+                require("conform").format { async = true }
+            end,
+            mode = "",
+            desc = "Format buffer",
+        },
+    },
     config = function()
         require("conform").setup {
             format_on_save = function(bufnr)
@@ -14,6 +25,13 @@ return {
                     timeout_ms = 500,
                 }
             end,
+            formatters_by_ft = {
+                lua = { "stylua", lsp_format = "fallback" },
+                python = { "pyright", lspt_format = "fallback" },
+                go = { "gofumpt", lsp_format = "fallback" },
+                javascript = { "prettierd", "prettier", stop_after_first = true },
+                typescript = { "prettierd", "prettier", stop_after_first = true },
+            },
         }
 
         Snacks.toggle
@@ -26,6 +44,6 @@ return {
                     vim.g.disable_autoformat = not state
                 end,
             })
-            :map("<leader>tf")
+            :map "<leader>tf"
     end,
 }

@@ -4,9 +4,9 @@ return {
     lazy = true,
     event = "VeryLazy",
     config = function()
-        local configs = require("nvim-treesitter.configs")
+        local configs = require "nvim-treesitter.configs"
         -- https://github.com/nvim-treesitter/nvim-treesitter
-        configs.setup({
+        configs.setup {
             ensure_installed = {
                 "c",
                 "lua",
@@ -19,6 +19,7 @@ return {
                 "python",
                 "typescript",
                 "markdown",
+                "markdown_inline",
                 "diff",
                 "go",
                 "terraform",
@@ -31,6 +32,6 @@ return {
             sync_install = false,
             highlight = { enable = true },
             indent = { enable = true },
-        })
-    end
+        }
+    end,
 }

@@ -17,9 +17,12 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "ts_ls",
+                "pyright",
                 "gopls",
             },
         }
+
+        vim.lsp.inlay_hint.enable(true)
 
         vim.lsp.config("lua_ls", {
             settings = {
@@ -139,15 +142,11 @@ return {
             },
         })
 
-        vim.filetype.add {
-            extension = {
-                zsh = "zsh",
-            },
-        }
-
-        vim.lsp.config("bashls", {
+        vim.lsp.config("remark_ls", {
             settings = {
-                filetypes = { "sh", "zsh", "bash" },
+                remark = {
+                    requireConfig = true,
+                },
             },
         })
     end,

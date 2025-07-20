@@ -7,6 +7,7 @@ return {
         require("session_manager").setup {
             -- Available options: Disabled, CurrentDir, LastSession, GitSession
             autoload_mode = config.AutoloadMode.Disabled,
+            autosave_ignore_dirs = { "/", "~/", "~/Downloads" }
         }
     end,
 }
